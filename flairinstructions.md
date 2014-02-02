@@ -48,6 +48,10 @@ The flair system only supports a single region so you will have to pick one.  If
 
 I am open to letting them use my battle.net thread, my data, or my bot, but I don't have access to the other subreddits directly.  After you go through this process you will not currently get any new flair on any other subreddit.  If you are a mod of another subreddit, feel free to [message me](http://www.reddit.com/message/compose/?to=jo3m3tal) and I can help you set it up if you would like league flair on your subreddit.
 
+> ### Why drop.sc?
+
+I just picked one (also the urls are neat).  I'm open to supporting other replay sites, I just haven't done it.  If you would like your site to be supported, send us a message and let us know.
+
 > ### I want a new feature or have some other idea about how to change something
 
 [Message the mods](http://www.reddit.com/message/compose?to=%2Fr%2Fallthingszerg)
