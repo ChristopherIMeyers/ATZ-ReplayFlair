@@ -16,6 +16,7 @@ import praw
 
 import urllib
 
+from datetime import datetime
 
 import settings as settings
 
@@ -50,10 +51,7 @@ def getLeague(region, url):
   print "getLeague(" + region[0] + ", " + url + ")"
   soup = BeautifulSoup(bnetGet(region[0], "/sc2/"+region[1]+"/profile/"+url))
   leaguename = soup.select(".badge-item")[0].select("span.badge")[0]['class'][1][6:]
-  matches = re.search(u"([0-9]{4}) (Season|시즌) ([0-9]+) -",soup.select("#season-snapshot")[0].select("h3")[0].get_text().strip())
-  if matches == None:
-    return False
-  return (leaguename, matches.group(1), matches.group(3))
+  return (leaguename, str(datetime.now().year), str(datetime.now().month), str(datetime.now().day))
 
 
 def messageReply(message, text):
@@ -128,7 +126,7 @@ def handleMessage(message):
                 f = open("accounts.txt","a")
                 f.write('{0},{1},{2},\n'.format(playerBnetUrl, redditname, regionName))
                 f.close()
-                r.set_flair(subreddit, redditname, playerName, leagueData[0].title() + " "+regionName+" S" + leagueData[1] + "-" + leagueData[2])
+                r.set_flair(subreddit, redditname, playerName, leagueData[0].title() + " "+regionName+" " + leagueData[1] + "-" + leagueData[2] + "-" + leagueData[3])
                 messageReply(message,"Your flair has been set.  Account link is a success!")
             else:
               messageReply(message,"Error: {DD6B39E6-857C-11E3-9693-7A7328D43830}. I don't really know what that error message is supposed to mean either.")
