@@ -1,3 +1,5 @@
+import re
+
 def isflairbotmessage(message):
   return message.subject == "account link replay"
 
