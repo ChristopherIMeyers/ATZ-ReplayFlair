@@ -20,6 +20,7 @@ from datetime import datetime
 
 import settings as settings
 
+import funcs
 
 def FindRedditName(events):
   for event in events:
@@ -66,9 +67,6 @@ def isMessageBodyValidLink(message):
   if matches == None:
     return False
   return 'http://'+matches.group(1)+'/d'
-
-def isflairbotmessage(message):
-  return message.subject == "account link replay"
 
 def stripOutClan(text):
   return re.search("(\[[A-z0-9]+\]<sp/>)?(.+)",text).group(2)
@@ -148,6 +146,6 @@ subreddit = r.get_subreddit("AllThingsZerg")
 
 inbox = r.get_unread()
 
-filteredmessages = filter(isflairbotmessage,inbox)
+filteredmessages = filter(funcs.isflairbotmessage,inbox)
 
 map(handleMessage,filteredmessages)
