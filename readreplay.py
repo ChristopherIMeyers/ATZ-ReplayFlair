@@ -60,14 +60,6 @@ def messageReply(message, text):
   message.reply(text)
   message.mark_as_read()
 
-
-
-def isMessageBodyValidLink(message):
-  matches = re.search("(drop.sc/[0-9]+)(/d|)",message.body)
-  if matches == None:
-    return False
-  return 'http://'+matches.group(1)+'/d'
-
 def stripOutClan(text):
   return re.search("(\[[A-z0-9]+\]<sp/>)?(.+)",text).group(2)
 
@@ -77,7 +69,7 @@ def handleMessage(message):
 
   savedReplayName = "tmp/working.SC2Replay"
 
-  replayLink = isMessageBodyValidLink(message)
+  replayLink = funcs.isMessageBodyValidLink(message)
 
   if not replayLink:
     messageReply(message,"replay link not found in message")
