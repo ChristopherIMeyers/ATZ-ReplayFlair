@@ -23,6 +23,19 @@ class Tests(unittest.TestCase):
     self.assertEqual(funcs.isMessageBodyValidLink(validNested), "http://drop.sc/1234/d")
     self.assertEqual(funcs.isMessageBodyValidLink(validNestedWithD), "http://drop.sc/1234/d")
 
+  def test_isGGTrackerMessageBodyValidLink(self):
+    inValid = Struct(body="blahblahblah")
+    validSimple = Struct(body="ggtracker.com/matches/1234")
+    validSimpleWithD = Struct(body="ggtracker.com/matches/1234/replay")
+    validNested = Struct(body=" wee ggtracker.com/matches/1234 wee")
+    validNestedWithD = Struct(body=" wee ggtracker.com/matches/1234/replay wee")
+    self.assertEqual(funcs.isMessageBodyValidLink(inValid), False)
+    self.assertEqual(funcs.isMessageBodyValidLink(validSimple), "http://ggtracker.com/matches/1234/replay")
+    self.assertEqual(funcs.isMessageBodyValidLink(validSimpleWithD), "http://ggtracker.com/matches/1234/replay")
+    self.assertEqual(funcs.isMessageBodyValidLink(validNested), "http://ggtracker.com/matches/1234/replay")
+    self.assertEqual(funcs.isMessageBodyValidLink(validNestedWithD), "http://ggtracker.com/matches/1234/replay")
+
+
 
 if __name__ == '__main__':
   unittest.main()
