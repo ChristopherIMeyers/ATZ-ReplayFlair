@@ -16,12 +16,16 @@ class Tests(unittest.TestCase):
     validSimple = Struct(body="drop.sc/1234")
     validSimpleWithD = Struct(body="drop.sc/1234/d")
     validNested = Struct(body=" wee drop.sc/1234 wee")
+    validNestedWithPass = Struct(body=" wee drop.sc/1234?pass=abcdef-789 wee")
     validNestedWithD = Struct(body=" wee drop.sc/1234/d wee")
+    validNestedWithDAndPass = Struct(body=" wee drop.sc/1234/d?pass=abcdef-789 wee")
     self.assertEqual(funcs.isMessageBodyValidLink(inValid), False)
     self.assertEqual(funcs.isMessageBodyValidLink(validSimple), "http://drop.sc/1234/d")
     self.assertEqual(funcs.isMessageBodyValidLink(validSimpleWithD), "http://drop.sc/1234/d")
     self.assertEqual(funcs.isMessageBodyValidLink(validNested), "http://drop.sc/1234/d")
+    self.assertEqual(funcs.isMessageBodyValidLink(validNestedWithPass), "http://drop.sc/1234/d?pass=abcdef-789")
     self.assertEqual(funcs.isMessageBodyValidLink(validNestedWithD), "http://drop.sc/1234/d")
+    self.assertEqual(funcs.isMessageBodyValidLink(validNestedWithDAndPass), "http://drop.sc/1234/d?pass=abcdef-789")
 
   def test_isGGTrackerMessageBodyValidLink(self):
     inValid = Struct(body="blahblahblah")
