@@ -110,16 +110,16 @@ def handleMessage(message):
 
   playerBnetUrl = '{0}/1/{1}/'.format(playerInt,playerName)
   leagueData = funcs.getLeague(settings.regions[regionName], playerBnetUrl)
-  if leagueData:
-      f = open("accounts.txt","a")
-      f.write('{0},{1},{2},\n'.format(playerBnetUrl, redditname, regionName))
-      f.close()
-      r.set_flair(subreddit, redditname, playerName, leagueData[0].title() + " "+regionName+" " + leagueData[1] + "-" + leagueData[2] + "-" + leagueData[3])
-      messageReply(message,"Your flair has been set.  Account link is a success!")
-  else:
+  if not (leagueData):
     messageReply(message,"Error: {DD6B39E6-857C-11E3-9693-7A7328D43830}")
+    return False
 
-
+  f = open("accounts.txt","a")
+  f.write('{0},{1},{2},\n'.format(playerBnetUrl, redditname, regionName))
+  f.close()
+  r.set_flair(subreddit, redditname, playerName, leagueData[0].title() + " "+regionName+" " + leagueData[1] + "-" + leagueData[2] + "-" + leagueData[3])
+  messageReply(message,"Your flair has been set.  Account link is a success!")
+  return True
 
 
 
