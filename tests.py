@@ -39,6 +39,13 @@ class Tests(unittest.TestCase):
     self.assertEqual(funcs.isMessageBodyValidLink(validNested), "http://ggtracker.com/matches/1234/replay")
     self.assertEqual(funcs.isMessageBodyValidLink(validNestedWithD), "http://ggtracker.com/matches/1234/replay")
 
+  def test_accountFileLoads(self):
+    actualAccountMaps = funcs.readAccountsFile("accounts_mock.txt")
+    expectedAccountMaps = [
+      {'bnet': '1234567/1/FirstTester/', 'region': 'EU', 'redditName': 'redditguy1'},
+      {'bnet': '2345678/1/SecondTester/', 'region': 'AM', 'redditName': 'redditguy2'}
+    ]
+    self.assertEqual(actualAccountMaps, expectedAccountMaps)
 
 
 if __name__ == '__main__':

@@ -11,3 +11,15 @@ def isMessageBodyValidLink(message):
   if matches != None:
     return 'http://'+matches.group(1)+'/replay'
   return False
+
+
+def readAccountsFile(fileName):
+  def readAccountsFileLine(line):
+    matches = re.search("([^,]+),([^,]+),([^,]+),", line)
+    return {
+      'bnet': matches.group(1),
+      'redditName': matches.group(2),
+      'region': matches.group(3)
+    }
+  lines = open(fileName,"r").readlines()
+  return map(readAccountsFileLine, lines)
