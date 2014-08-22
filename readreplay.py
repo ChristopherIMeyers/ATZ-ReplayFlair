@@ -39,20 +39,6 @@ def RegionNameFromId(regionId):
     return "KR"
   return None
 
-def bnetGet(region, url):
-  conn = httplib.HTTPConnection(region+'.battle.net')
-  conn.connect()
-  request = conn.putrequest('GET',url)
-  conn.endheaders()
-  conn.send('')
-  resp = conn.getresponse()
-  return resp.read()
-
-def getLeague(region, url):
-  print "getLeague(" + region[0] + ", " + url + ")"
-  soup = BeautifulSoup(bnetGet(region[0], "/sc2/"+region[1]+"/profile/"+url))
-  leaguename = soup.select(".badge-item")[0].select("span.badge")[0]['class'][1][6:]
-  return (leaguename, str(datetime.now().year), str(datetime.now().month), str(datetime.now().day))
 
 
 def messageReply(message, text):
@@ -111,7 +97,7 @@ def handleMessage(message):
           regionName = RegionNameFromId(regionInt)
           if regionName != None:
             playerBnetUrl = '{0}/1/{1}/'.format(playerInt,playerName)
-            leagueData = getLeague(settings.regions[regionName], playerBnetUrl)
+            leagueData = funcs.getLeague(settings.regions[regionName], playerBnetUrl)
             if leagueData:
                 f = open("accounts.txt","a")
                 f.write('{0},{1},{2},\n'.format(playerBnetUrl, redditname, regionName))
