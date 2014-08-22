@@ -105,7 +105,7 @@ def handleMessage(message):
                 r.set_flair(subreddit, redditname, playerName, leagueData[0].title() + " "+regionName+" " + leagueData[1] + "-" + leagueData[2] + "-" + leagueData[3])
                 messageReply(message,"Your flair has been set.  Account link is a success!")
             else:
-              messageReply(message,"Error: {DD6B39E6-857C-11E3-9693-7A7328D43830}. I don't really know what that error message is supposed to mean either.")
+              messageReply(message,"Error: {DD6B39E6-857C-11E3-9693-7A7328D43830}")
           else:
             messageReply(message,"Your region is not supported.  Go yell at the programmer responsible")
         else:
@@ -113,7 +113,7 @@ def handleMessage(message):
       else:
         messageReply(message,"Reddit name not found in replay.  Be sure to type out your reddit name in the exact format specified.")
     else:
-      messageReply(message,"Error: {2751ED8A-857C-11E3-A17F-7A7328D43830}. I don't really know what that error message is supposed to mean either.")
+      messageReply(message,"Error: {2751ED8A-857C-11E3-A17F-7A7328D43830}")
   else:
     messageReply(message,"Wrong number of players in replay, please host the game by yourself")
 
