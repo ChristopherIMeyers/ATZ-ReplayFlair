@@ -64,7 +64,6 @@ def handleMessage(message):
   urllib.urlretrieve(replayLink, savedReplayName)
 
   archive = mpyq.MPQArchive(savedReplayName)
-    
   # Read the protocol header, this can be read with any protocol
   contents = archive.header['user_data_header']['content']
   header = protocol15405.decode_replay_header(contents)
