@@ -99,23 +99,25 @@ def handleMessage(message):
   if not (redditname):
     messageReply(message,"Reddit name not found in replay.  Be sure to type out your reddit name in the exact format specified.")
     return False
-  if redditname.lower() == message.author.name.lower():
-    regionName = RegionNameFromId(regionInt)
-    if regionName != None:
-      playerBnetUrl = '{0}/1/{1}/'.format(playerInt,playerName)
-      leagueData = funcs.getLeague(settings.regions[regionName], playerBnetUrl)
-      if leagueData:
-          f = open("accounts.txt","a")
-          f.write('{0},{1},{2},\n'.format(playerBnetUrl, redditname, regionName))
-          f.close()
-          r.set_flair(subreddit, redditname, playerName, leagueData[0].title() + " "+regionName+" " + leagueData[1] + "-" + leagueData[2] + "-" + leagueData[3])
-          messageReply(message,"Your flair has been set.  Account link is a success!")
-      else:
-        messageReply(message,"Error: {DD6B39E6-857C-11E3-9693-7A7328D43830}")
-    else:
-      messageReply(message,"Your region is not supported.  Go yell at the programmer responsible")
-  else:
+  if redditname.lower() != message.author.name.lower():
     messageReply(message,"The reddit name in the replay is not the same reddit name you sent this message as.  Be sure to type out your reddit name exactly" )
+    return False
+
+  regionName = RegionNameFromId(regionInt)
+  if regionName != None:
+    playerBnetUrl = '{0}/1/{1}/'.format(playerInt,playerName)
+    leagueData = funcs.getLeague(settings.regions[regionName], playerBnetUrl)
+    if leagueData:
+        f = open("accounts.txt","a")
+        f.write('{0},{1},{2},\n'.format(playerBnetUrl, redditname, regionName))
+        f.close()
+        r.set_flair(subreddit, redditname, playerName, leagueData[0].title() + " "+regionName+" " + leagueData[1] + "-" + leagueData[2] + "-" + leagueData[3])
+        messageReply(message,"Your flair has been set.  Account link is a success!")
+    else:
+      messageReply(message,"Error: {DD6B39E6-857C-11E3-9693-7A7328D43830}")
+  else:
+    messageReply(message,"Your region is not supported.  Go yell at the programmer responsible")
+
 
 
 
