@@ -4,8 +4,8 @@ import sys
 import argparse
 import pprint
 
-from mpyq import mpyq
-import protocol15405
+import mpyq
+from s2protocol import protocol15405
 
 import httplib
 from bs4 import BeautifulSoup
@@ -72,7 +72,8 @@ def handleMessage(message):
   # The header's baseBuild determines which protocol to use
   baseBuild = header['m_version']['m_baseBuild']
   try:
-    protocol = __import__('protocol%s' % (baseBuild,))
+    _temp = __import__('s2protocol', globals(), locals(), ['protocol%s' % (baseBuild,)])
+    protocol = getattr(_temp, 'protocol%s' % (baseBuild,))
   except:
     print >> sys.stderr, 'Unsupported base build: %d' % baseBuild
     sys.exit(1)
