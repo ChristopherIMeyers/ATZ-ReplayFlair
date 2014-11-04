@@ -37,6 +37,8 @@ def RegionNameFromId(regionId):
     return "EU"
   if regionId == 3:
     return "KR"
+  if regionId == 6:
+    return "SEA"
   return None
 
 
