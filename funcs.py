@@ -3,6 +3,25 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 import httplib
 
+def FindRedditName(events):
+  for event in events:
+    if (event['_event'] == 'NNet.Game.SChatMessage'):
+      matches = re.search('reddit *name[ :]*([A-z0-9]+)',event['m_string'].lower())
+      if matches != None:
+        return matches.group(1)
+  return False
+
+def RegionNameFromId(regionId):
+  if regionId == 1:
+    return "AM"
+  if regionId == 2:
+    return "EU"
+  if regionId == 3:
+    return "KR"
+  if regionId == 6:
+    return "SEA"
+  return None
+
 def isflairbotmessage(message):
   return message.subject == "account link replay"
 
@@ -40,3 +59,12 @@ def readAccountsFile(fileName):
     }
   lines = open(fileName,"r").readlines()
   return map(readAccountsFileLine, lines)
+
+def messageReply(message, text):
+  print "sending message:" + text
+  message.reply(text)
+  message.mark_as_read()
+
+def stripOutClan(text):
+  return re.search("(\[[A-z0-9]+\]<sp/>)?(.+)",text).group(2)
+
