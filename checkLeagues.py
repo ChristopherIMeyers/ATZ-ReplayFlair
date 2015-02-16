@@ -37,3 +37,6 @@ def isLeagueDifferent(zippedUser):
 print 'changes'
 changes = filter(isLeagueDifferent, zipped)
 print changes
+
+def updateChange(change):
+  funcs.updateUserFlair(subreddit, change[0]['user'], change[0]['flair_text'], 'AM', change[1][1])
