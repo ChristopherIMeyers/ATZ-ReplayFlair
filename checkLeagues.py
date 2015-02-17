@@ -23,14 +23,14 @@ def getNewLeagueForAccountMap(accountMap):
   return (accountMap['redditName'], league)
 
 newLeagues = map(getNewLeagueForAccountMap, accountMaps)
-zipped = zip(currentLeagues, newLeagues)
+zipped = zip(accountMaps, currentLeagues, newLeagues)
 
 print 'zipped'
 print zipped
 
 def isLeagueDifferent(zippedUser):
-  oldLeague = zippedUser[0]['flair_css_class']
-  newLeague = zippedUser[1][1][0].lower()
+  oldLeague = zippedUser[1]['flair_css_class']
+  newLeague = zippedUser[2][1][0].lower()
   oldLeagueParsed = re.search("([A-z]+) ", oldLeague).group(1).lower()
   return newLeague != oldLeagueParsed
 
@@ -38,5 +38,7 @@ print 'changes'
 changes = filter(isLeagueDifferent, zipped)
 print changes
 
-def updateChange(change):
-  funcs.updateUserFlair(subreddit, change[0]['user'], change[0]['flair_text'], 'AM', change[1][1])
+def updateChange(zippedUser):
+  funcs.updateUserFlair(subreddit, zippedUser[1]['user'], zippedUser[1]['flair_text'], zippedUser[0]['region'], zippedUser[2][1])
+
+# map(updateChange, changes)

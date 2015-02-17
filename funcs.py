@@ -71,4 +71,4 @@ def stripOutClan(text):
   return re.search("(\[[A-z0-9]+\]<sp/>)?(.+)",text).group(2)
 
 def updateUserFlair(subReddit, redditName, bNetName, regionName, leagueData):
-  r.set_flair(subReddit, redditName, bNetName, leagueData[0].title() + " " + regionName + " " + leagueData[1] + "-" + leagueData[2] + "-" + leagueData[3])
+  subReddit.set_flair(redditName, bNetName, leagueData[0].title() + " " + regionName + " " + leagueData[1] + "-" + leagueData[2] + "-" + leagueData[3])
