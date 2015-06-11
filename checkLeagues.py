@@ -17,6 +17,8 @@ def getCurrentLeagueForAccountMap(accountMap):
 
 currentLeagues = map(getCurrentLeagueForAccountMap, accountMaps)
 
+print 'currentLeagues'
+print currentLeagues
 
 def getNewLeagueForAccountMap(accountMap):
   league = funcs.getLeague(settings.regions[accountMap['region']], accountMap['bnet'])
@@ -41,4 +43,4 @@ print changes
 def updateChange(zippedUser):
   funcs.updateUserFlair(subreddit, zippedUser[1]['user'], zippedUser[1]['flair_text'], zippedUser[0]['region'], zippedUser[2][1])
 
-# map(updateChange, changes)
+map(updateChange, changes)
