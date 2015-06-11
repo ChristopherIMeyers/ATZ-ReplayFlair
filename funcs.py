@@ -51,10 +51,8 @@ def getLeagueFromSource(source):
 
 def getLeague(region, url):
   print "getLeague(" + region[0] + ", " + url + ")"
-  soup = BeautifulSoup(bnetGet(region[0], "/sc2/"+region[1]+"/profile/"+url))
-  if (len(soup.select(".error-header")) > 0):
-    return (u'banned', str(datetime.now().year), str(datetime.now().month), str(datetime.now().day))
-  leaguename = soup.select(".badge-item")[0].select("span.badge")[0]['class'][1][6:]
+  source = bnetGet(region[0], "/sc2/"+region[1]+"/profile/"+url)
+  leaguename = getLeagueFromSource(source)
   return (leaguename, str(datetime.now().year), str(datetime.now().month), str(datetime.now().day))
 
 def readAccountsFile(fileName):
