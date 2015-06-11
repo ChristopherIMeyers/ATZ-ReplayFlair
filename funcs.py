@@ -43,6 +43,10 @@ def bnetGet(region, url):
   resp = conn.getresponse()
   return resp.read()
 
+def getLeagueFromSource(source):
+  soup = BeautifulSoup(source)
+  return soup.select(".badge-item")[0].select("span.badge")[0]['class'][1][6:]
+
 def getLeague(region, url):
   print "getLeague(" + region[0] + ", " + url + ")"
   soup = BeautifulSoup(bnetGet(region[0], "/sc2/"+region[1]+"/profile/"+url))
