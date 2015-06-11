@@ -32,8 +32,13 @@ print zipped
 
 def isLeagueDifferent(zippedUser):
   oldLeague = zippedUser[1]['flair_css_class']
+  if oldLeague == None:
+    return True
+  matches = re.search("([A-z]+) ", oldLeague)
+  if matches == None:
+    return True
+  oldLeagueParsed = matches.group(1).lower()
   newLeague = zippedUser[2][1][0].lower()
-  oldLeagueParsed = re.search("([A-z]+) ", oldLeague).group(1).lower()
   return newLeague != oldLeagueParsed
 
 print 'changes'
