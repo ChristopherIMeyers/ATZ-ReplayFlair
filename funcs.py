@@ -46,7 +46,7 @@ def bnetGet(region, url):
 def getLeagueFromSource(source):
   soup = BeautifulSoup(source)
   if (len(soup.select(".error-header")) > 0):
-    return 'banned'
+    return u'banned'
   return soup.select(".badge-item")[0].select("span.badge")[0]['class'][1][6:]
 
 def getLeague(region, url):
