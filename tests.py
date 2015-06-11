@@ -48,9 +48,10 @@ class Tests(unittest.TestCase):
     self.assertEqual(actualAccountMaps, expectedAccountMaps)
 
   def test_getLeagueFromSource(self):
-    expectedLeague = "grandmaster"
     pageSource= open("testdata/rank1gm.html","r").read()
-    self.assertEqual(funcs.getLeagueFromSource(pageSource), expectedLeague)
+    self.assertEqual(funcs.getLeagueFromSource(pageSource), "grandmaster")
+    pageSource= open("testdata/missing.html","r").read()
+    self.assertEqual(funcs.getLeagueFromSource(pageSource), "banned")
 
 if __name__ == '__main__':
   unittest.main()
