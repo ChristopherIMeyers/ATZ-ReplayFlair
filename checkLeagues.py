@@ -17,7 +17,7 @@ def getCurrentLeagueForAccountMap(accountMap):
 
 currentLeagues = map(getCurrentLeagueForAccountMap, accountMaps)
 
-print 'currentLeagues'
+print '\ncurrentLeagues'
 print currentLeagues
 
 def getNewLeagueForAccountMap(accountMap):
@@ -27,7 +27,7 @@ def getNewLeagueForAccountMap(accountMap):
 newLeagues = map(getNewLeagueForAccountMap, accountMaps)
 zipped = zip(accountMaps, currentLeagues, newLeagues)
 
-print 'zipped'
+print '\nzipped'
 print zipped
 
 def isLeagueDifferent(zippedUser):
@@ -41,7 +41,7 @@ def isLeagueDifferent(zippedUser):
   newLeague = zippedUser[2][1][0].lower()
   return newLeague != oldLeagueParsed
 
-print 'changes'
+print '\nchanges'
 changes = filter(isLeagueDifferent, zipped)
 print changes
 
