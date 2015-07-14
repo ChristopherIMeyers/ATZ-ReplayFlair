@@ -52,6 +52,10 @@ class Tests(unittest.TestCase):
     self.assertEqual(funcs.getLeagueFromSource(pageSource), "grandmaster")
     pageSource= open("testdata/missing.html","r").read()
     self.assertEqual(funcs.getLeagueFromSource(pageSource), "banned")
+    pageSource= open("testdata/none.used.to.be.gm.html","r").read()
+    self.assertEqual(funcs.getLeagueFromSource(pageSource), "none")
+    pageSource= open("testdata/diamond.html","r").read()
+    self.assertEqual(funcs.getLeagueFromSource(pageSource), "diamond")
 
 if __name__ == '__main__':
   unittest.main()
