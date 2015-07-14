@@ -58,9 +58,7 @@ def handleMessage(message):
   if (len(details['m_playerList']) != 1):
     funcs.messageReply(message,"Wrong number of players in replay, please host the game by yourself")
     return False
-  if (details['m_playerList'][0]['m_toon']['m_realm'] != 1):
-    funcs.messageReply(message,"Error: {2751ED8A-857C-11E3-A17F-7A7328D43830}")
-    return False
+  realm = details['m_playerList'][0]['m_toon']['m_realm']
   regionInt = details['m_playerList'][0]['m_toon']['m_region']
   playerInt = details['m_playerList'][0]['m_toon']['m_id']
   playerName = details['m_playerList'][0]['m_name']
@@ -80,7 +78,7 @@ def handleMessage(message):
     funcs.messageReply(message,"Your region is not supported.  Go yell at the programmer responsible")
     return False
 
-  playerBnetUrl = '{0}/1/{1}/'.format(playerInt,playerName)
+  playerBnetUrl = '{0}/{1}/{2}/'.format(playerInt, realm, playerName)
   leagueData = funcs.getLeague(settings.regions[regionName], playerBnetUrl)
   if not (leagueData):
     funcs.messageReply(message,"Error: {DD6B39E6-857C-11E3-9693-7A7328D43830}")
