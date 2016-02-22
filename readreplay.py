@@ -53,8 +53,11 @@ def handleMessage(message):
 
   contents = archive.read_file('replay.details')
   details = protocol.decode_replay_details(contents)
+  events = protocol.decode_replay_message_events(archive.read_file('replay.message.events'))
+  return handleReplayDetails(details, message, events)
 
 
+def handleReplayDetails(details, message, events):
   if (len(details['m_playerList']) != 1):
     funcs.messageReply(message,"Wrong number of players in replay, please host the game by yourself")
     return False
@@ -65,7 +68,7 @@ def handleMessage(message):
 
   playerName = funcs.stripOutClan(playerName)
 
-  redditname = funcs.FindRedditName(protocol.decode_replay_message_events(archive.read_file('replay.message.events')))
+  redditname = funcs.FindRedditName(events)
   if not (redditname):
     funcs.messageReply(message,"Reddit name not found in replay.  Be sure to type out your reddit name in the exact format specified.")
     return False
