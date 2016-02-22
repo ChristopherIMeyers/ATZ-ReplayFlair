@@ -7,18 +7,18 @@ class Struct:
 
 class Tests(unittest.TestCase):
   def test_praw(self):
-    r = praw.Reddit(user_agent='r/allthingszerg replay flair bot')
+    r = praw.Reddit(user_agent = 'r/allthingszerg replay flair bot')
     frontpage = r.get_front_page()
     self.assertEqual(sum(1 for _ in frontpage), 25)
 
   def test_isMessageBodyValidLink(self):
-    inValid = Struct(body="blahblahblah")
-    validSimple = Struct(body="drop.sc/1234")
-    validSimpleWithD = Struct(body="drop.sc/1234/d")
-    validNested = Struct(body=" wee drop.sc/1234 wee")
-    validNestedWithPass = Struct(body=" wee drop.sc/1234?pass=abcdef-789 wee")
-    validNestedWithD = Struct(body=" wee drop.sc/1234/d wee")
-    validNestedWithDAndPass = Struct(body=" wee drop.sc/1234/d?pass=abcdef-789 wee")
+    inValid = Struct(body = "blahblahblah")
+    validSimple = Struct(body = "drop.sc/1234")
+    validSimpleWithD = Struct(body = "drop.sc/1234/d")
+    validNested = Struct(body = " wee drop.sc/1234 wee")
+    validNestedWithPass = Struct(body = " wee drop.sc/1234?pass=abcdef-789 wee")
+    validNestedWithD = Struct(body = " wee drop.sc/1234/d wee")
+    validNestedWithDAndPass = Struct(body = " wee drop.sc/1234/d?pass=abcdef-789 wee")
     self.assertEqual(funcs.isMessageBodyValidLink(inValid), False)
     self.assertEqual(funcs.isMessageBodyValidLink(validSimple), "http://drop.sc/1234/d")
     self.assertEqual(funcs.isMessageBodyValidLink(validSimpleWithD), "http://drop.sc/1234/d")
@@ -28,11 +28,11 @@ class Tests(unittest.TestCase):
     self.assertEqual(funcs.isMessageBodyValidLink(validNestedWithDAndPass), "http://drop.sc/1234/d?pass=abcdef-789")
 
   def test_isGGTrackerMessageBodyValidLink(self):
-    inValid = Struct(body="blahblahblah")
-    validSimple = Struct(body="ggtracker.com/matches/1234")
-    validSimpleWithD = Struct(body="ggtracker.com/matches/1234/replay")
-    validNested = Struct(body=" wee ggtracker.com/matches/1234 wee")
-    validNestedWithD = Struct(body=" wee ggtracker.com/matches/1234/replay wee")
+    inValid = Struct(body = "blahblahblah")
+    validSimple = Struct(body = "ggtracker.com/matches/1234")
+    validSimpleWithD = Struct(body = "ggtracker.com/matches/1234/replay")
+    validNested = Struct(body = " wee ggtracker.com/matches/1234 wee")
+    validNestedWithD = Struct(body = " wee ggtracker.com/matches/1234/replay wee")
     self.assertEqual(funcs.isMessageBodyValidLink(inValid), False)
     self.assertEqual(funcs.isMessageBodyValidLink(validSimple), "http://ggtracker.com/matches/1234/replay")
     self.assertEqual(funcs.isMessageBodyValidLink(validSimpleWithD), "http://ggtracker.com/matches/1234/replay")
@@ -48,13 +48,13 @@ class Tests(unittest.TestCase):
     self.assertEqual(actualAccountMaps, expectedAccountMaps)
 
   def test_getLeagueFromSource(self):
-    pageSource= open("testdata/rank1gm.html","r").read()
+    pageSource = open("testdata/rank1gm.html", "r").read()
     self.assertEqual(funcs.getLeagueFromSource(pageSource), "grandmaster")
-    pageSource= open("testdata/missing.html","r").read()
+    pageSource = open("testdata/missing.html", "r").read()
     self.assertEqual(funcs.getLeagueFromSource(pageSource), "banned")
-    pageSource= open("testdata/none.used.to.be.gm.html","r").read()
+    pageSource = open("testdata/none.used.to.be.gm.html", "r").read()
     self.assertEqual(funcs.getLeagueFromSource(pageSource), "none")
-    pageSource= open("testdata/diamond.html","r").read()
+    pageSource = open("testdata/diamond.html", "r").read()
     self.assertEqual(funcs.getLeagueFromSource(pageSource), "diamond")
 
   def test_stripOutClan(self):

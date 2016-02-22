@@ -26,18 +26,18 @@ def isflairbotmessage(message):
   return message.subject == "account link replay"
 
 def isMessageBodyValidLink(message):
-  matches = re.search("(drop.sc/[0-9]+)(/d|)(\?pass=[a-z0-9\-]+|)",message.body)
+  matches = re.search("(drop.sc/[0-9]+)(/d|)(\?pass=[a-z0-9\-]+|)", message.body)
   if matches != None:
-    return 'http://'+matches.group(1)+'/d'+matches.group(3)
-  matches = re.search("(ggtracker.com/matches/[0-9]+)(/replay|)",message.body)
+    return 'http://' + matches.group(1) + '/d' + matches.group(3)
+  matches = re.search("(ggtracker.com/matches/[0-9]+)(/replay|)", message.body)
   if matches != None:
-    return 'http://'+matches.group(1)+'/replay'
+    return 'http://' + matches.group(1) + '/replay'
   return False
 
 def bnetGet(region, url):
-  conn = httplib.HTTPConnection(region+'.battle.net')
+  conn = httplib.HTTPConnection(region + '.battle.net')
   conn.connect()
-  request = conn.putrequest('GET',url)
+  request = conn.putrequest('GET', url)
   conn.endheaders()
   conn.send('')
   resp = conn.getresponse()
@@ -63,7 +63,7 @@ def readAccountsFile(fileName):
       'redditName': matches.group(2),
       'region': matches.group(3)
     }
-  lines = open(fileName,"r").readlines()
+  lines = open(fileName, "r").readlines()
   return map(readAccountsFileLine, lines)
 
 def messageReply(message, text):
@@ -72,7 +72,8 @@ def messageReply(message, text):
   message.mark_as_read()
 
 def stripOutClan(text):
-  return re.search("([\[<][A-z0-9]+[\]>]<sp/>)?(.+)",text).group(2)
+  return re.search("([\[<][A-z0-9]+[\]>]<sp/>)?(.+)", text).group(2)
 
 def updateUserFlair(subReddit, redditName, bNetName, regionName, leagueData):
-  subReddit.set_flair(redditName, bNetName, leagueData[0].title() + " " + regionName + " " + leagueData[1] + "-" + leagueData[2] + "-" + leagueData[3])
+  newFlairText = leagueData[0].title() + " " + regionName + " " + leagueData[1] + "-" + leagueData[2] + "-" + leagueData[3]
+  subReddit.set_flair(redditName, bNetName, newFlairText)
