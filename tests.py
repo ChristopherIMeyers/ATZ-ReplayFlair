@@ -57,5 +57,12 @@ class Tests(unittest.TestCase):
     pageSource= open("testdata/diamond.html","r").read()
     self.assertEqual(funcs.getLeagueFromSource(pageSource), "diamond")
 
+  def test_stripOutClan(self):
+    self.assertEqual(funcs.stripOutClan("nomatch"), "nomatch")
+    self.assertEqual(funcs.stripOutClan("<fakeclan><sp/>withclan"), "withclan")
+    self.assertEqual(funcs.stripOutClan("<fakeclan>nomatch"), "<fakeclan>nomatch")
+    self.assertEqual(funcs.stripOutClan("[fakeclan]<sp/>withclan"), "withclan")
+    self.assertEqual(funcs.stripOutClan("[fakeclan]nomatch"), "[fakeclan]nomatch")
+
 if __name__ == '__main__':
   unittest.main()

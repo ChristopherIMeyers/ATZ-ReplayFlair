@@ -72,7 +72,7 @@ def messageReply(message, text):
   message.mark_as_read()
 
 def stripOutClan(text):
-  return re.search("(\[[A-z0-9]+\]<sp/>)?(.+)",text).group(2)
+  return re.search("([\[<][A-z0-9]+[\]>]<sp/>)?(.+)",text).group(2)
 
 def updateUserFlair(subReddit, redditName, bNetName, regionName, leagueData):
   subReddit.set_flair(redditName, bNetName, leagueData[0].title() + " " + regionName + " " + leagueData[1] + "-" + leagueData[2] + "-" + leagueData[3])
