@@ -21,5 +21,9 @@ wget https://github.com/ChristopherIMeyers/ATZ-ReplayFlair/archive/master.zip
 unzip master.zip
 rm master.zip
 mv ATZ-ReplayFlair-master replayflair
+wget https://github.com/Blizzard/s2protocol/archive/master.zip
+unzip master.zip
+rm master.zip
+mv s2protocol-master replayflair/s2protocol
 mv settings.py replayflair/settings.py
 ```
