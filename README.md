@@ -9,7 +9,9 @@ Update Server
 ---
 ```bash
 sudo pip install --upgrade pip
-sudo pip install mpyq
+sudo python -m pip install mpyq
+sudo python -m pip install BeautifulSoup4
+sudo python -m pip install praw
 ```
 
 Update Script on Server
