@@ -5,6 +5,13 @@ ATZ-ReplayFlair [![Build Status](https://travis-ci.org/ChristopherIMeyers/ATZ-Re
 * supports AM/EU/KR
 * drop.sc and ggtracker.com support
 
+Update Server
+---
+```bash
+sudo pip install --upgrade pip
+sudo pip install mpyq
+```
+
 Update Script on Server
 ---
 ```bash
