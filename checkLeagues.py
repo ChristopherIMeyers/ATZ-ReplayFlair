@@ -1,5 +1,6 @@
 import praw
 import re
+import time
 
 import settings as settings
 import funcs
@@ -51,14 +52,10 @@ def runBatch(accountMaps):
 
   map(updateChange, changes)
 
-runBatch(allAccountMaps[0:10])
-runBatch(allAccountMaps[10:20])
-runBatch(allAccountMaps[20:30])
-runBatch(allAccountMaps[30:40])
-runBatch(allAccountMaps[40:50])
-runBatch(allAccountMaps[50:60])
-runBatch(allAccountMaps[60:70])
-runBatch(allAccountMaps[70:80])
-runBatch(allAccountMaps[80:90])
-runBatch(allAccountMaps[90:100])
-runBatch(allAccountMaps[100:])
+index = 0
+currentBatch = allAccountMaps[0:10]
+while (len(currentBatch) > 0):
+  runBatch(currentBatch)
+  time.sleep(3600)
+  index = index + 10
+  currentBatch = allAccountMaps[index:index + 10]
