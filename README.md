@@ -17,6 +17,7 @@ sudo python -m pip install praw
 Update Script on Server
 ---
 ```bash
+cp replayflair/accounts.txt accounts.txt
 cp replayflair/settings.py settings.py
 rm -r replayflair
 wget https://github.com/ChristopherIMeyers/ATZ-ReplayFlair/archive/master.zip
@@ -28,4 +29,5 @@ unzip master.zip
 rm master.zip
 mv s2protocol-master replayflair/s2protocol
 mv settings.py replayflair/settings.py
+mv accounts.txt replayflair/accounts.txt
 ```
