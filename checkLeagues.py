@@ -1,6 +1,5 @@
 import praw
 import re
-import time
 
 import settings as settings
 import funcs
@@ -52,10 +51,12 @@ def runBatch(accountMaps):
 
   map(updateChange, changes)
 
-index = 0
-currentBatch = allAccountMaps[0:10]
-while (len(currentBatch) > 0):
-  runBatch(currentBatch)
-  time.sleep(3600)
-  index = index + 10
-  currentBatch = allAccountMaps[index:index + 10]
+numberOfAccountsToBatch = 1
+
+index = int(open('current.iteration.txt', 'r').read())
+if index >= len(allAccountMaps):
+  index = 0
+currentBatch = allAccountMaps[index:index + numberOfAccountsToBatch]
+index += numberOfAccountsToBatch
+open('current.iteration.txt', 'w').write(str(index))
+runBatch(currentBatch)
