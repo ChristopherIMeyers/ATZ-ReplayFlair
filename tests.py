@@ -8,7 +8,7 @@ class Struct:
 
 class Tests(unittest.TestCase):
   def test_praw(self):
-    r = praw.Reddit(user_agent = 'r/allthingszerg replay flair bot')
+    r = praw.Reddit(user_agent = 'r/allthingszerg replay flair script')
     frontpage = r.get_front_page()
     self.assertEqual(sum(1 for _ in frontpage), 25)
 
@@ -70,7 +70,7 @@ class Tests(unittest.TestCase):
     self.assertEqual(funcs.stripOutClan("[fakeclan]nomatch"), "[fakeclan]nomatch")
 
   def test_flairInstructionsAreUpToDate(self):
-    r = praw.Reddit(user_agent='ATZ flair bot!  Pipe Battle.Net data to Reddit')
+    r = praw.Reddit(user_agent='ATZ flair script! Pipe Battle.Net data to Reddit')
     subreddit = r.get_subreddit("AllThingsZerg")
     wikipage = r.get_wiki_page(subreddit, "flair")
     liveContent = wikipage.content_md

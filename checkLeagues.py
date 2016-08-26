@@ -6,7 +6,7 @@ import funcs
 
 allAccountMaps = funcs.readAccountsFile("accounts.txt")
 
-r = praw.Reddit(user_agent='ATZ flair bot!  Pipe Battle.Net data to Reddit')
+r = praw.Reddit(user_agent='ATZ flair script! Pipe Battle.Net data to Reddit')
 r.login(settings.reddituser, settings.redditpass)
 subreddit = r.get_subreddit("AllThingsZerg")
 
