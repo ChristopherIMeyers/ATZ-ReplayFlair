@@ -64,5 +64,15 @@ class Tests(unittest.TestCase):
     self.assertEqual(funcs.stripOutClan("[fakeclan]<sp/>withclan"), "withclan")
     self.assertEqual(funcs.stripOutClan("[fakeclan]nomatch"), "[fakeclan]nomatch")
 
+  def test_flairInstructionsAreUpToDate(self):
+    r = praw.Reddit(user_agent='ATZ flair bot!  Pipe Battle.Net data to Reddit')
+    subreddit = r.get_subreddit("AllThingsZerg")
+    wikipage = r.get_wiki_page(subreddit, "flair")
+    liveContent = wikipage.content_md
+    srcContent = open("flairinstructions.md", "r").read()
+    cleanedLiveContent = liveContent.replace('\r', '')
+    self.assertEqual(cleanedLiveContent, srcContent)
+
+
 if __name__ == '__main__':
   unittest.main()

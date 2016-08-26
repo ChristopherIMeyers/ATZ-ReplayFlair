@@ -8,8 +8,8 @@ The flair system is fully automated.  Before messaging the moderators with issue
 2. click "resume game" if it pops up
 3. type out in chat "reddit name: <redditname>"
 4. score screen/end game
-5. upload the replay of that game to [drop.sc](http://drop.sc/)
-6. message Automaton2000 with the url of the uploaded replay [like so](http://www.reddit.com/message/compose/?to=Automaton2000&subject=account%20link%20replay&message=http://drop.sc/123456789)
+5. upload the replay of that game to [ggtracker](http://ggtracker.com/) or [drop.sc](http://drop.sc/)
+6. message atzbot with the url of the uploaded replay [like so](http://www.reddit.com/message/compose/?to=atzbot&subject=account%20link%20replay&message=http://drop.sc/123456789)
 
 
 
