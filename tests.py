@@ -1,3 +1,5 @@
+# coding=utf-8
+
 import unittest
 import praw
 import funcs
@@ -68,6 +70,9 @@ class Tests(unittest.TestCase):
     self.assertEqual(funcs.stripOutClan("<fakeclan>nomatch"), "<fakeclan>nomatch")
     self.assertEqual(funcs.stripOutClan("[fakeclan]<sp/>withclan"), "withclan")
     self.assertEqual(funcs.stripOutClan("[fakeclan]nomatch"), "[fakeclan]nomatch")
+    self.assertEqual(funcs.stripOutClan("<fakeclanǂ><sp/>withclan"), "withclan")
+    self.assertEqual(funcs.stripOutClan("[[fakeclan]]nomatch"), "[[fakeclan]]nomatch")
+    self.assertEqual(funcs.stripOutClan("<<fakeclan>>nomatch"), "<<fakeclan>>nomatch")
 
   def test_flairInstructionsAreUpToDate(self):
     r = praw.Reddit(user_agent='ATZ flair script! Pipe Battle.Net data to Reddit')
