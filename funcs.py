@@ -47,7 +47,11 @@ def getLeagueFromSource(source):
   soup = BeautifulSoup(source)
   if (len(soup.select(".error-header")) > 0):
     return u'banned'
-  return soup.select(".badge-item")[0].select("span.badge")[0]['class'][1][6:]
+  try:
+    return soup.select(".badge-item")[0].select("span.badge")[0]['class'][1][6:]
+  except: 
+    open("last.failure.txt", "w").write(source)
+    raise
 
 def getLeague(region, url):
   print "getLeague(" + region[0] + ", " + url + ")"

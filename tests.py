@@ -1,6 +1,7 @@
 import unittest
 import praw
 import funcs
+import os
 
 class Struct:
   def __init__(self, **entries): self.__dict__.update(entries)
@@ -56,6 +57,10 @@ class Tests(unittest.TestCase):
     self.assertEqual(funcs.getLeagueFromSource(pageSource), "none")
     pageSource = open("testdata/diamond.html", "r").read()
     self.assertEqual(funcs.getLeagueFromSource(pageSource), "diamond")
+    with self.assertRaises(IndexError):
+      funcs.getLeagueFromSource("invalid junk")
+    self.assertEqual(open("last.failure.txt", "r").read(), "invalid junk")
+    os.remove("last.failure.txt")
 
   def test_stripOutClan(self):
     self.assertEqual(funcs.stripOutClan("nomatch"), "nomatch")
