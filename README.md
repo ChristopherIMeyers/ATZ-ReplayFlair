@@ -30,4 +30,5 @@ rm master.zip
 mv s2protocol-master replayflair/s2protocol
 mv settings.py replayflair/settings.py
 mv accounts.txt replayflair/accounts.txt
+mkdir replayflair/tmp
 ```
