@@ -44,7 +44,7 @@ def bnetGet(region, url):
   return resp.read()
 
 def getLeagueFromSource(source):
-  soup = BeautifulSoup(source)
+  soup = BeautifulSoup(source, "html.parser")
   if (len(soup.select(".error-header")) > 0):
     return u'banned'
   try:
