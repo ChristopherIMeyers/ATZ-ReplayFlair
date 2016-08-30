@@ -97,7 +97,7 @@ def handleReplayDetails(details, message, events):
 
 
 r = praw.Reddit(user_agent='ATZ flair script! Pipe Battle.Net data to Reddit')
-r.login(settings.reddituser, settings.redditpass)
+r.login(settings.reddituser, settings.redditpass, disable_warning=True)
 subreddit = r.get_subreddit("AllThingsZerg")
 
 inbox = r.get_unread()
