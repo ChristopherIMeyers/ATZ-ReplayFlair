@@ -81,6 +81,10 @@ class Tests(unittest.TestCase):
     liveContent = wikipage.content_md
     srcContent = open("flairinstructions.md", "r").read()
     cleanedLiveContent = liveContent.replace('\r', '')
+    cleanedLiveContent = cleanedLiveContent.replace('&lt;', '<')
+    cleanedLiveContent = cleanedLiveContent.replace('&gt;', '>')
+    cleanedLiveContent = cleanedLiveContent.replace('&amp;', '&')
+
     self.assertEqual(cleanedLiveContent, srcContent)
 
 
