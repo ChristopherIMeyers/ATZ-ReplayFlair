@@ -19,6 +19,7 @@ Update Script on Server
 ```bash
 cp replayflair/accounts.txt accounts.txt
 cp replayflair/settings.py settings.py
+cp replayflair/current.iteration.txt current.iteration.txt
 rm -r replayflair
 wget https://github.com/ChristopherIMeyers/ATZ-ReplayFlair/archive/master.zip
 unzip master.zip
@@ -30,5 +31,6 @@ rm master.zip
 mv s2protocol-master replayflair/s2protocol
 mv settings.py replayflair/settings.py
 mv accounts.txt replayflair/accounts.txt
+mv current.iteration.txt replayflair/current.iteration.txt
 mkdir replayflair/tmp
 ```
