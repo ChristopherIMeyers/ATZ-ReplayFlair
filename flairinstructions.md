@@ -8,7 +8,7 @@ The flair system is fully automated.  Before messaging the moderators with issue
 2. click "resume game" if it pops up
 3. type out in chat "reddit name: <redditname>"
 4. score screen/end game
-5. upload the replay of that game to [ggtracker](http://ggtracker.com/) ~~or [drop.sc](http://drop.sc/)~~ ([drop.sc is not currently supported](https://github.com/ChristopherIMeyers/ATZ-ReplayFlair/issues/14)) 
+5. upload the replay of that game to [ggtracker](http://ggtracker.com/) or [drop.sc](http://drop.sc/)
 6. message atzbot with the url of the uploaded replay [like so](http://www.reddit.com/message/compose/?to=atzbot&subject=account%20link%20replay&message=http://ggtracker.com/matches/123456789)
 
 
@@ -31,7 +31,6 @@ Have you received a reply (may take a few minutes)?  If you have waited and hear
 
 Most of the error messages are pretty self explanatory.  If you have trouble the first time because your replay was invalid, try again with a new replay and send another message to Automaton.  If the message is crypt or confusing, feel free to [send us a message](http://www.reddit.com/message/compose?to=%2Fr%2FAllThingsZerg) and we can work it out.
 
-
 > ### What is going to happen to my old master league flair?
 
 All old manually verified flair will be retired in a process that has already begun.  Flair will be retired based on the season it was setup, (more recent master league flair will not be retired as quickly)
@@ -47,10 +46,6 @@ The flair system only supports a single region so you will have to pick one.  If
 > ### What about the other subreddits?
 
 I am open to letting them use my battle.net thread, my data, or my bot, but I don't have access to the other subreddits directly.  After you go through this process you will not currently get any new flair on any other subreddit.  If you are a mod of another subreddit, feel free to [message me](http://www.reddit.com/message/compose/?to=jo3m3tal) and I can help you set it up if you would like league flair on your subreddit.
-
-> ### Why drop.sc?
-
-I just picked one (also the urls are neat).  I'm open to supporting other replay sites, I just haven't done it.  If you would like your site to be supported, send us a message and let us know.
 
 > ### I want a new feature or have some other idea about how to change something
 
