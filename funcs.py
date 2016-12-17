@@ -2,6 +2,15 @@ import re
 from bs4 import BeautifulSoup
 from datetime import datetime
 import httplib
+import praw
+import settings
+
+def GetPraw():
+  return praw.Reddit(client_id = settings.client_id,
+                     client_secret = settings.client_secret,
+                     username = settings.reddituser,
+                     password = settings.redditpass,
+                     user_agent = 'r/allthingszerg replay flair script')
 
 def FindRedditName(events):
   for event in events:
