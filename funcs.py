@@ -82,7 +82,7 @@ def readAccountsFile(fileName):
 def messageReply(message, text):
   print "sending message:" + text
   message.reply(text)
-  message.mark_as_read()
+  message.mark_read()
 
 def stripOutClan(text):
   return re.search("([\[<][^\[\]<>]+[\]>]<sp/>)?(.+)", text).group(2)

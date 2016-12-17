@@ -23,7 +23,7 @@ import settings as settings
 import funcs
 
 def handleMessage(message):
-  print "handleMessage from " + message.author.name
+  print "handleMessage from " + message.author
 
   savedReplayName = "tmp/working.SC2Replay"
 
@@ -72,7 +72,7 @@ def handleReplayDetails(details, message, events):
   if not (redditname):
     funcs.messageReply(message, "Reddit name not found in replay. Be sure to type out your reddit name in the exact format specified.")
     return False
-  if redditname.lower() != message.author.name.lower():
+  if redditname.lower() != message.author.lower():
     funcs.messageReply(message, "The reddit name in the replay is not the same reddit name you sent this message as. Be sure to type out your reddit name exactly" )
     return False
 
@@ -90,17 +90,16 @@ def handleReplayDetails(details, message, events):
   f = open("accounts.txt","a")
   f.write('{0},{1},{2},\n'.format(playerBnetUrl, redditname, regionName))
   f.close()
-  r.set_flair(subreddit, redditname, playerName, leagueData[0].title() + " "+regionName+" " + leagueData[1] + "-" + leagueData[2] + "-" + leagueData[3])
+  subreddit.flair.set('bboe', playerName, leagueData[0].title() + " "+regionName+" " + leagueData[1] + "-" + leagueData[2] + "-" + leagueData[3])
   funcs.messageReply(message, "Your flair has been set. Account link is a success!")
   return True
 
 
 
-r = praw.Reddit(user_agent='ATZ flair script! Pipe Battle.Net data to Reddit')
-r.login(settings.reddituser, settings.redditpass, disable_warning=True)
-subreddit = r.get_subreddit("AllThingsZerg")
+r = funcs.GetPraw()
+subreddit = r.subreddit("AllThingsZerg")
 
-inbox = r.get_unread()
+inbox = r.inbox.unread()
 
 filteredmessages = filter(funcs.isflairbotmessage,inbox)
 
