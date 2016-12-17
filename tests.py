@@ -4,15 +4,18 @@ import unittest
 import praw
 import funcs
 import os
+import settings
 
 class Struct:
   def __init__(self, **entries): self.__dict__.update(entries)
 
 class Tests(unittest.TestCase):
   def test_praw(self):
-    r = praw.Reddit(user_agent = 'r/allthingszerg replay flair script')
-    frontpage = r.get_front_page()
-    self.assertEqual(sum(1 for _ in frontpage), 25)
+    r = praw.Reddit(client_id = settings.client_id,
+                    client_secret = settings.client_secret,
+                    user_agent = 'r/allthingszerg replay flair script')
+    frontpage = r.front.hot()
+    self.assertEqual(sum(1 for _ in frontpage), 100)
 
   def test_isDropScMessageBodyValidLink(self):
     inValid = Struct(body = "blahblahblah")
@@ -73,11 +76,13 @@ class Tests(unittest.TestCase):
     self.assertEqual(funcs.stripOutClan("<<fakeclan>>nomatch"), "<<fakeclan>>nomatch")
 
   def test_flairInstructionsAreUpToDate(self):
-    r = praw.Reddit(user_agent='ATZ flair script! Pipe Battle.Net data to Reddit')
-    subreddit = r.get_subreddit("AllThingsZerg")
-    wikipage = r.get_wiki_page(subreddit, "flair")
+    r = praw.Reddit(client_id = settings.client_id,
+                    client_secret = settings.client_secret,
+                    user_agent = 'r/allthingszerg replay flair script')
+    subreddit = r.subreddit('allthingszerg')
+    wikipage = subreddit.wiki['flair']
     liveContent = wikipage.content_md
-    srcContent = open("flairinstructions.md", "r").read()
+    srcContent = open('flairinstructions.md', 'r').read()
     cleanedLiveContent = liveContent.replace('\r', '')
     cleanedLiveContent = cleanedLiveContent.replace('&lt;', '<')
     cleanedLiveContent = cleanedLiveContent.replace('&gt;', '>')
