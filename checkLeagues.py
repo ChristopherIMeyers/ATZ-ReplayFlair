@@ -7,14 +7,16 @@ import funcs
 
 allAccountMaps = funcs.readAccountsFile("accounts.txt")
 
-r = praw.Reddit(user_agent='ATZ flair script! Pipe Battle.Net data to Reddit')
-r.login(settings.reddituser, settings.redditpass, disable_warning=True)
-subreddit = r.get_subreddit("AllThingsZerg")
+r = funcs.GetPraw()
+subreddit = r.subreddit("AllThingsZerg")
 
 def runBatch(accountMaps):
   def getCurrentLeagueForAccountMap(accountMap):
     def getLeagueForRedditUser(redditName):
-      return r.get_flair(subreddit, redditName)
+      for flair in subreddit.flair:
+        if flair['user'].name.lower() == redditName.lower():
+          return flair
+      raise ValueError('user flair could not be found')
     return getLeagueForRedditUser(accountMap['redditName'])
 
   currentLeagues = map(getCurrentLeagueForAccountMap, accountMaps)
