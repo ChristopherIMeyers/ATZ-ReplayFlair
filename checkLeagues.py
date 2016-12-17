@@ -1,5 +1,6 @@
 import praw
 import re
+import os
 
 import settings as settings
 import funcs
@@ -53,8 +54,12 @@ def runBatch(accountMaps):
 
 numberOfAccountsToBatch = 1
 
-index = int(open('current.iteration.txt', 'r').read())
-if index >= len(allAccountMaps):
+
+if os.path.exists('current.iteration.txt'):
+  index = int(open('current.iteration.txt', 'r').read())
+  if index >= len(allAccountMaps):
+    index = 0
+else:
   index = 0
 currentBatch = allAccountMaps[index:index + numberOfAccountsToBatch]
 index += numberOfAccountsToBatch
