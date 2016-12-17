@@ -8,7 +8,7 @@ ATZ-ReplayFlair [![Build Status](https://travis-ci.org/ChristopherIMeyers/ATZ-Re
 Update Server
 ---
 ```bash
-sudo pip install --upgrade pip
+sudo python -m pip install --upgrade pip
 sudo python -m pip install mpyq
 sudo python -m pip install BeautifulSoup4
 sudo python -m pip install praw
