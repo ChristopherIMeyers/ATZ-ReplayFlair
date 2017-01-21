@@ -85,7 +85,13 @@ def messageReply(message, text):
   message.mark_read()
 
 def stripOutClan(text):
-  return re.search("([\[<][^\[\]<>]+[\]>]<sp/>)?(.+)", text).group(2)
+  return re.search("(" +
+                     "(?:\[|<|&lt;)" +
+                     "[^\[\]<>]+" +
+                     "(?:\]|>|&gt;)" +
+                     "<sp/>" +
+                   ")?" +
+                   "(.+)", text).group(2)
 
 def updateUserFlair(subReddit, redditName, bNetName, regionName, leagueData):
   newFlairText = leagueData[0].title() + " " + regionName + " " + leagueData[1] + "-" + leagueData[2] + "-" + leagueData[3]

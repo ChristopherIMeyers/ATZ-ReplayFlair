@@ -72,6 +72,7 @@ class Tests(unittest.TestCase):
     self.assertEqual(funcs.stripOutClan("<fakeclanǂ><sp/>withclan"), "withclan")
     self.assertEqual(funcs.stripOutClan("[[fakeclan]]nomatch"), "[[fakeclan]]nomatch")
     self.assertEqual(funcs.stripOutClan("<<fakeclan>>nomatch"), "<<fakeclan>>nomatch")
+    self.assertEqual(funcs.stripOutClan("&lt;fakeclanǂ&gt;<sp/>withclan"), "withclan")
 
   def test_flairInstructionsAreUpToDate(self):
     r = funcs.GetPraw()
