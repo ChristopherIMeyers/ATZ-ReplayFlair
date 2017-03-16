@@ -4,6 +4,10 @@ import unittest
 import praw
 import funcs
 import os
+
+if not os.path.exists('settings.py'):
+  open('settings.py', 'w').write("reddituser = ''\nredditpass = ''\nclient_id = ''\nclient_secret = ''")
+
 import settings
 
 class Struct:
