@@ -5,19 +5,28 @@ import praw
 import funcs
 import os
 
-if not os.path.exists('settings.py'):
-  open('settings.py', 'w').write("reddituser = ''\nredditpass = ''\nclient_id = ''\nclient_secret = ''")
-
-import settings
-
 class Struct:
   def __init__(self, **entries): self.__dict__.update(entries)
 
 class Tests(unittest.TestCase):
-  def test_praw(self):
-    r = funcs.GetPraw()
-    frontpage = r.front.hot()
-    self.assertEqual(sum(1 for _ in frontpage), 100)
+  if os.path.exists('settings.py'):
+    def test_praw(self):
+      r = funcs.GetPraw()
+      frontpage = r.front.hot()
+      self.assertEqual(sum(1 for _ in frontpage), 100)
+
+    def test_flairInstructionsAreUpToDate(self):
+      r = funcs.GetPraw()
+      subreddit = r.subreddit('allthingszerg')
+      wikipage = subreddit.wiki['flair']
+      liveContent = wikipage.content_md
+      srcContent = open('flairinstructions.md', 'r').read()
+      cleanedLiveContent = liveContent.replace('\r', '')
+      cleanedLiveContent = cleanedLiveContent.replace('&lt;', '<')
+      cleanedLiveContent = cleanedLiveContent.replace('&gt;', '>')
+      cleanedLiveContent = cleanedLiveContent.replace('&amp;', '&')
+
+      self.assertEqual(cleanedLiveContent, srcContent)
 
   def test_isDropScMessageBodyValidLink(self):
     inValid = Struct(body = "blahblahblah")
@@ -77,19 +86,6 @@ class Tests(unittest.TestCase):
     self.assertEqual(funcs.stripOutClan("[[fakeclan]]nomatch"), "[[fakeclan]]nomatch")
     self.assertEqual(funcs.stripOutClan("<<fakeclan>>nomatch"), "<<fakeclan>>nomatch")
     self.assertEqual(funcs.stripOutClan("&lt;fakeclanǂ&gt;<sp/>withclan"), "withclan")
-
-  def test_flairInstructionsAreUpToDate(self):
-    r = funcs.GetPraw()
-    subreddit = r.subreddit('allthingszerg')
-    wikipage = subreddit.wiki['flair']
-    liveContent = wikipage.content_md
-    srcContent = open('flairinstructions.md', 'r').read()
-    cleanedLiveContent = liveContent.replace('\r', '')
-    cleanedLiveContent = cleanedLiveContent.replace('&lt;', '<')
-    cleanedLiveContent = cleanedLiveContent.replace('&gt;', '>')
-    cleanedLiveContent = cleanedLiveContent.replace('&amp;', '&')
-
-    self.assertEqual(cleanedLiveContent, srcContent)
 
 
 if __name__ == '__main__':
