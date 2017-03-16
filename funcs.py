@@ -95,4 +95,4 @@ def stripOutClan(text):
 
 def updateUserFlair(subReddit, redditName, bNetName, regionName, leagueData):
   newFlairText = leagueData[0].title() + " " + regionName + " " + leagueData[1] + "-" + leagueData[2] + "-" + leagueData[3]
-  subReddit.set_flair(redditName, bNetName, newFlairText)
+  subReddit.flair.set(redditName, bNetName, newFlairText)
