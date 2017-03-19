@@ -38,20 +38,12 @@ def updateChange(zippedUser):
 
 def runBatch(accountMaps):
   currentLeagues = map(getCurrentLeagueForAccountMap, accountMaps)
-
-  print '\ncurrentLeagues'
-  print currentLeagues
-
   newLeagues = map(getNewLeagueForAccountMap, accountMaps)
   zipped = zip(accountMaps, currentLeagues, newLeagues)
-
-  print '\nzipped'
-  print zipped
-
-  print '\nchanges'
   changes = filter(isLeagueDifferent, zipped)
-  print changes
-
+  if len(changes) > 0:
+    print '\nchanges'
+    print changes
   map(updateChange, changes)
 
 numberOfAccountsToBatch = 1
