@@ -65,7 +65,6 @@ def getLeagueFromSource(source):
     raise
 
 def getLeague(region, url):
-  print "getLeague(" + region[0] + ", " + url + ")"
   source = bnetGet(region[0], "/sc2/"+region[1]+"/profile/"+url)
   leaguename = getLeagueFromSource(source)
   return (leaguename, str(datetime.now().year), str(datetime.now().month), str(datetime.now().day))

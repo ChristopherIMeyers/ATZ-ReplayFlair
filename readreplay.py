@@ -82,6 +82,7 @@ def handleReplayDetails(details, message, events):
     return False
 
   playerBnetUrl = '{0}/{1}/{2}/'.format(playerInt, realm, playerName)
+  print "getLeague(" + settings.regions[regionName][0] + ", " + playerBnetUrl + ")"
   leagueData = funcs.getLeague(settings.regions[regionName], playerBnetUrl)
   if not (leagueData):
     funcs.messageReply(message, "Error: {DD6B39E6-857C-11E3-9693-7A7328D43830}")
