@@ -23,7 +23,7 @@ import settings as settings
 import funcs
 
 def handleMessage(message):
-  print "handleMessage from " + message.author
+  print "handleMessage from " + message.author.name
 
   savedReplayName = "tmp/working.SC2Replay"
 
@@ -72,7 +72,7 @@ def handleReplayDetails(details, message, events):
   if not (redditname):
     funcs.messageReply(message, "Reddit name not found in replay. Be sure to type out your reddit name in the exact format specified.")
     return False
-  if redditname.lower() != message.author.lower():
+  if redditname.lower() != message.author.name.lower():
     funcs.messageReply(message, "The reddit name in the replay is not the same reddit name you sent this message as. Be sure to type out your reddit name exactly" )
     return False
 
